@@ -1,8 +1,3 @@
-// Implements algebraic operations and the square root function without using 
-// the Java operations a + b, a - b, a * b, a / b, a % b, and without calling 
-// Math.sqrt. All the functions in this class operate on int values and
-// return int values.
-
 public class Algebra {
 	public static void main(String args[]) {
 	    // Tests some of the operations
@@ -25,43 +20,65 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		for (int i = 0; i < x2; i ++) {
+			x1 ++;
+		}
+		return x1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		for (int i = 0; i < x2; i ++) {
+			x1 --;
+		}
+		return x1;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int times_results = 0;
+		for (int i = 0; i < x2; i ++) {
+			times_results = plus(times_results, x1);
+		}
+		return times_results;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		int power_results = 1;
+		for (int i = 0; i < n; i ++) {
+			power_results = times(power_results, x);
+		}
+		return power_results;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int div_results = 0;
+		while (x1 >= x2) {
+			x1 = minus(x1, x2);
+			div_results ++;
+		}
+		return div_results;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int n = 1;
+		while (times(n, x2) <= x1) {
+			n ++;
+		}
+		n = minus(n, 1);
+		int r = minus(x1, times(x2, n));
+		return r;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		int a = 1;
+		while (times(a, a) < x) {
+			a ++;
+		}
+		return a;
 	}	  	  
 }
