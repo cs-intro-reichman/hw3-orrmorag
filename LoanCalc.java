@@ -13,11 +13,11 @@ public class LoanCalc {
 
 		System.out.print("\nPeriodical payment, using brute force: ");
 		System.out.println((int) bruteForceSolver(loan, rate, n, epsilon));
-		System.out.print("number of iterations: " + iterationCounter);
+		System.out.print("Number of iterations: " + iterationCounter);
 
 		System.out.print("\nPeriodical payment, using bi-section search: ");
 		System.out.println((int) bisectionSolver(loan, rate, n, epsilon));
-		System.out.println("number of iterations: " + iterationCounter);
+		System.out.println("Number of iterations: " + iterationCounter);
 	}
 
 	private static double endBalance(double loan, double rate, int n, double payment) {	
