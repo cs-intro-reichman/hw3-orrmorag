@@ -76,11 +76,7 @@ public class Algebra {
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		int a = 1;
-<<<<<<< HEAD
-		while (a*a < x) {
-=======
 		while (times(a, a) < x) {
->>>>>>> e19c7aa342a4210bbf68ea848865e6fceaeb5d49
 			a ++;
 		}
 		return a;
