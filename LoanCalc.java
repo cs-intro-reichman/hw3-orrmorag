@@ -32,9 +32,9 @@ public class LoanCalc {
 		iterationCounter = 0;
 		double periodicalPayment = loan / n;
 		double balance = loan;
-		while (balance > 0) {
+		while (balance > epsilon) {
 			balance = endBalance(loan, rate, n, periodicalPayment);
-			periodicalPayment += 1;
+			periodicalPayment += epsilon;
 			iterationCounter ++;
 		}
 		return periodicalPayment;
