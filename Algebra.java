@@ -61,7 +61,10 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		int a = 1;
+		while (a*a < x) {
+			a ++;
+		}
+		return a;
 	}	  	  
 }
