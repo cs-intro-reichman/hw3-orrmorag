@@ -30,20 +30,19 @@ public class LoanCalc {
 	
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
 		iterationCounter = 0;
-		double periodicalPayment = (double) loan / n;
+		double periodicalPayment = loan / n;
 		double balance = loan;
-		while (balance > epsilon){
+		while (balance > 0) {
 			balance = endBalance(loan, rate, n, periodicalPayment);
-			periodicalPayment += epsilon;
+			periodicalPayment += 1;
 			iterationCounter ++;
 		}
-		iterationCounter -= 1;
-		return periodicalPayment - epsilon;
+		return periodicalPayment;
     }
 
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
 		iterationCounter = 0;
-		double periodicalPayment = (double) loan / n;		// 10,000
+		double periodicalPayment = loan / n;	        	// 10,000
 		double low = loan / n; 					            // 10,000
 		double high = loan;  					     	    // 100,000
 		double balance = loan;
@@ -51,15 +50,14 @@ public class LoanCalc {
 			balance = endBalance(loan, rate, n, periodicalPayment);
 			if (balance > epsilon) {
 				low = periodicalPayment;
-				periodicalPayment = (double) (low + high) / 2;
+				periodicalPayment = (low + high) / 2;
 			}
 			else {
 				high = periodicalPayment;
-				periodicalPayment = (double) (low + high) / 2;
+				periodicalPayment = (low + high) / 2;
 			}
 			iterationCounter ++;
 		}
-		iterationCounter -= 1;
 		return periodicalPayment;
     }
 }
