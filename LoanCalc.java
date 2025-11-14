@@ -9,11 +9,11 @@ public class LoanCalc {
 		double loan = Double.parseDouble(args[0]);
 		double rate = Double.parseDouble(args[1]);
 		int n = Integer.parseInt(args[2]);
-		System.out.println("Loan = " + loan + ", interest rate = " + rate + "%, periods = " + n);
+		System.out.print("Loan = " + loan + ", interest rate = " + rate + "%, periods = " + n);
 
 		System.out.print("\nPeriodical payment, using brute force: ");
 		System.out.println((int) bruteForceSolver(loan, rate, n, epsilon));
-		System.out.println("number of iterations: " + iterationCounter);
+		System.out.print("number of iterations: " + iterationCounter);
 
 		System.out.print("\nPeriodical payment, using bi-section search: ");
 		System.out.println((int) bisectionSolver(loan, rate, n, epsilon));
