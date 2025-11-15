@@ -20,10 +20,15 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		for (int i = 0; i < x2; i ++) {
-			x1 ++;
+		int max = Math.max(x1, x2);
+		int min = Math.min(x1, x2);
+		if (x1 < 0 && x2 < 0) {
+			return minus(x1, x2);
 		}
-		return x1;
+		for (int i = 0; i < max; i ++) {
+			min ++;
+		}
+		return min;
 	}
 
 	// Returns x1 - x2
