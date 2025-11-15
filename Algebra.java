@@ -18,72 +18,47 @@ public class Algebra {
    		System.out.println(sqrt(76123));
 	}  
 
-	// Returns x1 + x2
-	public static int plus(int x1, int x2) {
-		int max = Math.max(x1, x2);
-		int min = Math.min(x1, x2);
-		if (x1 < 0 && x2 < 0) {
-			return minus(x1, x2);
-		}
-		for (int i = 0; i < max; i ++) {
-			min ++;
-		}
-		return min;
-	}
+    public static int plus(int a, int b) {
+        for (int i = 0; i < b; i++) a++;
+        return a;
+    }
 
-	// Returns x1 - x2
-	public static int minus(int x1, int x2) {
-		for (int i = 0; i < x2; i ++) {
-			x1 --;
-		}
-		return x1;
-	}
+    public static int minus(int a, int b) {
+        for (int i = 0; i < b; i++) a--;
+        return a;
+    }
 
-	// Returns x1 * x2
-	public static int times(int x1, int x2) {
-		int times_results = 0;
-		for (int i = 0; i < x2; i ++) {
-			times_results = plus(times_results, x1);
-		}
-		return times_results;
-	}
+    public static int times(int a, int b) {
+        int r = 0;
+        for (int i = 0; i < b; i++) r = plus(r, a);
+        return r;
+    }
 
-	// Returns x^n (for n >= 0)
-	public static int pow(int x, int n) {
-		int power_results = 1;
-		for (int i = 0; i < n; i ++) {
-			power_results = times(power_results, x);
-		}
-		return power_results;
-	}
+    public static int pow(int a, int b) {
+        int r = 1;
+        for (int i = 0; i < b; i++) r = times(r, a);
+        return r;
+    }
 
-	// Returns the integer part of x1 / x2 
-	public static int div(int x1, int x2) {
-		int div_results = 0;
-		while (x1 >= x2) {
-			x1 = minus(x1, x2);
-			div_results ++;
-		}
-		return div_results;
-	}
+    public static int div(int a, int b) {
+        int c = 0;
+        int s = b;
+        while (s <= a) {
+            s = plus(s, b);
+            c++;
+        }
+        return c;
+    }
 
-	// Returns x1 % x2
-	public static int mod(int x1, int x2) {
-		int n = 1;
-		while (times(n, x2) <= x1) {
-			n ++;
-		}
-		n = minus(n, 1);
-		int r = minus(x1, times(x2, n));
-		return r;
-	}	
+    public static int mod(int a, int b) {
+        int d = div(a, b);
+        int m = times(d, b);
+        return minus(a, m);
+    }
 
-	// Returns the integer part of sqrt(x) 
-	public static int sqrt(int x) {
-		int a = 1;
-		while (times(a, a) < x) {
-			a ++;
-		}
-		return a;
-	}	  	  
+    public static int sqrt(int x) {
+        int c = 1;
+        while (times(c, c) <= x) c++;
+        return c - 1;
+    }
 }
