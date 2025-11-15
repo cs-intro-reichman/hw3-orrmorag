@@ -1,8 +1,3 @@
-// Implements algebraic operations and the square root function without using 
-// the Java operations a + b, a - b, a * b, a / b, a % b, and without calling 
-// Math.sqrt. All the functions in this class operate on int values and
-// return int values.
-
 public class Algebra {
 	public static void main(String args[]) {
 	    // Tests some of the operations
@@ -23,45 +18,115 @@ public class Algebra {
    		System.out.println(sqrt(76123));
 	}  
 
-	// Returns x1 + x2
-	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}
+    public static int plus(int a, int b) {
+        while (b > 0) {
+            a++;
+            b--;
+        }
+        while (b < 0) {
+            a--;
+            b++;
+        }
+        return a;
+    }
 
-	// Returns x1 - x2
-	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}
+    public static int minus(int a, int b) {
+        while (b > 0) {
+            a--;
+            b--;
+        }
+        while (b < 0) {
+            a++;
+            b++;
+        }
+        return a;
+    }
 
-	// Returns x1 * x2
-	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}
+    private static int negate(int x) {
+        int r = 0;
+        while (x > 0) {
+            x--;
+            r--;
+        }
+        while (x < 0) {
+            x++;
+            r++;
+        }
+        return r;
+    }
 
-	// Returns x^n (for n >= 0)
-	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
-	}
+    private static int abs(int x) {
+        if (x >= 0) return x;
+        return negate(x);
+    }
 
-	// Returns the integer part of x1 / x2 
-	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}
+    public static int times(int a, int b) {
+        int r = 0;
+        boolean neg = false;
 
-	// Returns x1 % x2
-	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}	
+        if (a < 0) {
+            a = abs(a);
+            neg = !neg;
+        }
+        if (b < 0) {
+            b = abs(b);
+            neg = !neg;
+        }
 
-	// Returns the integer part of sqrt(x) 
-	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
-	}	  	  
+        for (int i = 0; i < b; i++) {
+            r = plus(r, a);
+        }
+
+        if (neg) r = negate(r);
+        return r;
+    }
+
+    public static int pow(int a, int b) {
+        int r = 1;
+        for (int i = 0; i < b; i++) {
+            r = times(r, a);
+        }
+        return r;
+    }
+
+    public static int div(int a, int b) {
+        if (b == 0) return 0;
+
+        boolean neg = false;
+        if (a < 0) {
+            a = abs(a);
+            neg = !neg;
+        }
+        if (b < 0) {
+            b = abs(b);
+            neg = !neg;
+        }
+
+        int count = 0;
+        int sum = b;
+        while (sum <= a) {
+            sum = plus(sum, b);
+            count++;
+        }
+
+        if (neg) count = negate(count);
+        return count;
+    }
+
+    public static int mod(int a, int b) {
+        if (b == 0) return 0;
+        int q = div(a, b);
+        int p = times(q, b);
+        return minus(a, p);
+    }
+
+    public static int sqrt(int x) {
+        if (x <= 0) return 0;
+        int c = 1;
+        while (times(c, c) <= x) {
+            c++;
+        }
+        c--;
+        return c;
+    }
 }
