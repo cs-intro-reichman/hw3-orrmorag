@@ -19,46 +19,114 @@ public class Algebra {
 	}  
 
     public static int plus(int a, int b) {
-        for (int i = 0; i < b; i++) a++;
+        while (b > 0) {
+            a++;
+            b--;
+        }
+        while (b < 0) {
+            a--;
+            b++;
+        }
         return a;
     }
 
     public static int minus(int a, int b) {
-        for (int i = 0; i < b; i++) a--;
+        while (b > 0) {
+            a--;
+            b--;
+        }
+        while (b < 0) {
+            a++;
+            b++;
+        }
         return a;
+    }
+
+    private static int negate(int x) {
+        int r = 0;
+        while (x > 0) {
+            x--;
+            r--;
+        }
+        while (x < 0) {
+            x++;
+            r++;
+        }
+        return r;
+    }
+
+    private static int abs(int x) {
+        if (x >= 0) return x;
+        return negate(x);
     }
 
     public static int times(int a, int b) {
         int r = 0;
-        for (int i = 0; i < b; i++) r = plus(r, a);
+        boolean neg = false;
+
+        if (a < 0) {
+            a = abs(a);
+            neg = !neg;
+        }
+        if (b < 0) {
+            b = abs(b);
+            neg = !neg;
+        }
+
+        for (int i = 0; i < b; i++) {
+            r = plus(r, a);
+        }
+
+        if (neg) r = negate(r);
         return r;
     }
 
     public static int pow(int a, int b) {
         int r = 1;
-        for (int i = 0; i < b; i++) r = times(r, a);
+        for (int i = 0; i < b; i++) {
+            r = times(r, a);
+        }
         return r;
     }
 
     public static int div(int a, int b) {
-        int c = 0;
-        int s = b;
-        while (s <= a) {
-            s = plus(s, b);
-            c++;
+        if (b == 0) return 0;
+
+        boolean neg = false;
+        if (a < 0) {
+            a = abs(a);
+            neg = !neg;
         }
-        return c;
+        if (b < 0) {
+            b = abs(b);
+            neg = !neg;
+        }
+
+        int count = 0;
+        int sum = b;
+        while (sum <= a) {
+            sum = plus(sum, b);
+            count++;
+        }
+
+        if (neg) count = negate(count);
+        return count;
     }
 
     public static int mod(int a, int b) {
-        int d = div(a, b);
-        int m = times(d, b);
-        return minus(a, m);
+        if (b == 0) return 0;
+        int q = div(a, b);
+        int p = times(q, b);
+        return minus(a, p);
     }
 
     public static int sqrt(int x) {
+        if (x <= 0) return 0;
         int c = 1;
-        while (times(c, c) <= x) c++;
-        return c - 1;
+        while (times(c, c) <= x) {
+            c++;
+        }
+        c--;
+        return c;
     }
 }
